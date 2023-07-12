@@ -1,0 +1,95 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&family=Space+Mono:ital@0;1&display=swap");
+
+body {
+  font-family: "Lato", sans-serif;
+}
+#logo {
+  width: 7%;
+  padding-right: 1rem;
+}
+
+#companyName {
+  display: inline;
+}
+
+#headerContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.nav_links {
+  list-style: none;
+  font: 25px;
+  margin-bottom: 20rem;
+}
+
+li {
+  margin-bottom: 20px;
+}
+
+.nav_container {
+  border: 2px solid black;
+  float: left;
+  padding-right: 2rem;
+  justify-content: space-between;
+  width: 250px;
+  min-height: calc(100vh - 10em);
+}
+
+.maincontent {
+  border: 2px solid black;
+  flex: auto;
+  padding: 2em;
+  margin-left: 10px;
+}
+
+/* Fullbar is container that holds both nav and main conatiner */
+#fullbar {
+  display: flex;
+  align-items: stretch;
+  margin: 0;
+}
+
+#main_searchbox {
+  height: 20px;
+  width: 30rem;
+  text-align: center;
+  margin-left: 30px;
+}
+
+#search_section {
+  display: flex;
+  justify-content: center;
+}
+#pie_section {
+  display: flex;
+  margin-top: 50px;
+}
+th,
+td {
+  padding: 10px;
+}
+
+#pie_chart {
+  margin-top: 100px;
+  margin-left: 20px;
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  background: conic-gradient(orange 10%, #2ba4cd 25%, #df70e4 40%);
+}
+
+#pie_legend {
+  margin-left: 20px;
+  padding-top: 60px;
+}
+
+#order_section_btn {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.sold_out {
+  color: red;
+}
