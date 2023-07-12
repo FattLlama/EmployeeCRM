@@ -93,3 +93,9 @@ td {
 .sold_out {
   color: red;
 }
+
+.nav_anchor {
+  background-color: #199319;
+  color: white;
+  padding: 15px 25px;
+}
