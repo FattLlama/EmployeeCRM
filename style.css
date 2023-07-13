@@ -17,10 +17,6 @@ body {
   justify-content: center;
 }
 
-li {
-  margin-bottom: 20px;
-}
-
 .nav_container {
   border: 2px solid black;
   float: left;
@@ -28,14 +24,13 @@ li {
   justify-content: space-between;
   width: 200px;
   min-height: calc(100vh - 10em);
+  background-color: rgb(223, 223, 223);
 }
 
 .nav_links {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  width: 200px;
-  background-color: white;
 }
 
 .nav_anchor {
