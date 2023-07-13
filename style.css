@@ -17,12 +17,6 @@ body {
   justify-content: center;
 }
 
-.nav_links {
-  list-style: none;
-  font: 25px;
-  margin-bottom: 20rem;
-}
-
 li {
   margin-bottom: 20px;
 }
@@ -32,8 +26,30 @@ li {
   float: left;
   padding-right: 2rem;
   justify-content: space-between;
-  width: 250px;
+  width: 200px;
   min-height: calc(100vh - 10em);
+}
+
+.nav_links {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: white;
+}
+
+.nav_anchor {
+  display: block;
+  color: black;
+  padding: 8px 16px;
+  text-decoration: none;
+  width: 200px; 
+}
+
+/* Change the link color on hover */
+.nav_anchor:hover {
+  background-color: gray;
+  color: white;
 }
 
 .maincontent {
@@ -94,8 +110,3 @@ td {
   color: red;
 }
 
-.nav_anchor {
-  background-color: #199319;
-  color: white;
-  padding: 15px 25px;
-}
