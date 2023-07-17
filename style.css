@@ -105,3 +105,13 @@ td {
   color: red;
 }
 
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #f4f4f4;
+  padding: 10px;
+}
+
+nav ul li:hover .dropdown-menu {
+  display: block;
+}
