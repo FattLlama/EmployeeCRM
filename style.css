@@ -61,23 +61,11 @@ body {
   margin: 0;
 }
 
-#main_searchbox {
-  height: 20px;
-  width: 30rem;
-  text-align: center;
-  margin-left: 30px;
-}
-
-#search_section {
-  display: flex;
-  justify-content: center;
-}
 #pie_section {
   display: flex;
-  margin-top: 50px;
 }
-th,
-td {
+
+th,td {
   padding: 10px;
 }
 
@@ -93,12 +81,6 @@ td {
 #pie_legend {
   margin-left: 20px;
   padding-top: 60px;
-}
-
-#order_section_btn {
-  margin-top: 30px;
-  display: flex;
-  justify-content: center;
 }
 
 .sold_out {
@@ -136,4 +118,19 @@ nav ul li:hover .dropdown-menu {
   max-height: 200px;
   object-fit: cover;
   margin-bottom: 10px;
+}
+
+#actions {
+  margin-top: 30px;
+}
+
+#main_searchbox {
+  height: 20px;
+  width: 30rem;
+  text-align: center;
+}
+
+#add_item input {
+  width: 60px;
+  text-align: center;
 }

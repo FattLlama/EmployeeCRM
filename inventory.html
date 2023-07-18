@@ -7,8 +7,8 @@
     <title>Business Bros</title>
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
-    <script src="index.js"></script>
+  <body onload="loadInventory()">
+    <script src="inv_script.js"></script>
     <header id="headerContainer">
       <img src="../assets/logo.png" alt="Company Logo" id="logo" />
       <h1 id="companyName">Business Bros</h1>
@@ -33,14 +33,6 @@
         </ul> 
       </nav>
       <div class="maincontent">
-        <div id="search_section">
-          <input type="Submit" value="Submit" />
-          <input
-            type="text"
-            placeholder="Item name, SKU, etc"
-            id="main_searchbox"
-          />
-        </div>
         <div id="pie_section">
           <div id="pie_chart"></div>
           <div id="pie_legend">
@@ -72,7 +64,37 @@
             </table>
           </div>
         </div>
-        <div id="order_section_btn"><button>Order More Items</button></div>
+        <table id="actions">
+          <tr id="search_section">
+            <td>
+              <input type="Submit" value="Search" />
+            </td>
+            <td>
+              <input
+              type="text"
+              placeholder="Item name, SKU, etc"
+              id="main_searchbox"
+              />
+            </td>
+          </tr>
+          <tr hidden id="inventory_search_results">
+            <td id="inventory_search_actions">
+              <button id="order-more">Order more</button>
+              <button id="adjust_quantity">Adjust quantity</button>
+              <button id="adjust_price">Adjust price</button>
+              <button is="remove_item_btn">Remove item</button>
+            </ti>
+          </tr>
+          <tr id="add_item">
+            <td>
+              <button onclick="addItem()">Add item</button>
+            </td>
+            <td>
+              <input id="add_item_name" type="text" placeholder="Name"/>
+              <input id="add_item_price" type="text" placeholder="Price"/>
+            </td>
+          </tr>
+        </table>
       </div>
     </div>
   </body>
