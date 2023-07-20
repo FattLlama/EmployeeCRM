@@ -1,10 +1,6 @@
-// fs for reading file
-const fs = require("fs");
-
 function loadInventory() {
     // console.log("loadInventory called");
-    // var invString = localStorage.getItem("inventoryList");
-    let invString = fs.readFileSync("inventory.json");
+    var invString = localStorage.getItem("inventoryList");
     let invList = JSON.parse(invString)
     if (invList) {
         let invTable = document.getElementById("inventoryTable");
@@ -30,13 +26,14 @@ function loadInventory() {
                         quantity: 0,
                         availability: 'n' };
         defList.push(defItem);
-        fs.writeFileSync("inventory.json", JSON.stringify(defList));
+        let defListString = JSON.stringify(defList);
+        localStorage.setItem("inventoryList", defListString);
     }
 }
 
 function addItem() {
     // console.log("Add item called");
-    let invString = fs.readFileSync("inventory.json");
+    var invString = localStorage.getItem("inventoryList");
     let invList = JSON.parse(invString)
     let nameBox = document.getElementById("add_item_name");
     let priceBox = document.getElementById("add_item_price");
@@ -56,7 +53,7 @@ function addItem() {
                     availability: 'n' };
         invList.push(newItem);
         let newInvString = JSON.stringify(invList);
-        fs.writeFileSync("inventory.json", JSON.stringify(invList));
+        localStorage.setItem("inventoryList", newInvString);
         console.log("Added item: " + nameBox.value);
     }
     loadInventory();
