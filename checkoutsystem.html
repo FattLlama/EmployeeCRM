@@ -27,7 +27,37 @@
         </ul> 
       </nav>
       <div class="maincontent">
-      </div>
+        <h2>Checkout System</h2>
+
+        <section class="inventory">
+          <h3>Available Inventory</h3>
+          <ul>
+            <li>
+              <input type="checkbox" id="item1" value="DKRSTR Mesh Shorts">
+              <label for="item1">DKRSTR Mesh Shorts</label>
+            </li>
+            <li>
+              <input type="checkbox" id="item2" value="No Fear Vintage Tees">
+              <label for="item2">No Fear Vintage Tees</label>
+            </li>
+            <li>
+              <input type="checkbox" id="item3" value="Daisy Co. Beanies">
+              <label for="item3">Daisy Co. Beanies</label>
+            </li>
+          </ul>
+        </section>
+    
+        <section class="checkout-form">
+          <h3>Checkout</h3>
+          <form id="checkoutForm">
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" min="1" required>
+            <button type="submit">Checkout</button>
+          </form>
+          <p id="message"></p>
+        </section>
+      
+        <script src="checkout.js"></script>
     </div>
   </body>
 </html>
