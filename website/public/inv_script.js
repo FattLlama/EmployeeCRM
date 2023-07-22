@@ -39,24 +39,6 @@ window.onload = function () {
                                 });
             updateItems();
         }
-        /*
-        if (!exists) {
-            fetch('/add_item', {
-                method: 'POST',
-                body: urlData,
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                console.log(data.item);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-            
-            loadItems();
-        }
-        */
         else {
             // if it does exist, show the error in the error section of the page
             actionsErrors.innerHTML = "Error adding " + formData.get("item_name") + ", item already exists";
@@ -77,23 +59,42 @@ window.onload = function () {
                 }
             }
         }
-
+        selectedItems = [];
+        updateItems();
     });
 
     quantityAdjustmentForm.addEventListener('submit', (event) => {
         event.preventDefault(); // prevent default form submission
        
         const formData = new FormData(quantityAdjustmentForm);
-
-
+        let amount = formData.get("quantity_num");
+        for (let i = 0; i < selectedItems.length; i++) {
+            for (let j = 0; j < localInventory.length; j++) {
+                if (selectedItems[i] == localInventory[j].name) {
+                    localInventory[j].quantity = amount;
+                    break;
+                }
+            }
+        }
+        selectedItems = [];
+        updateItems();
     });
 
     priceAdjustmentForm.addEventListener('submit', (event) => {
         event.preventDefault(); // prevent default form submission
         
         const formData = new FormData(priceAdjustmentForm);
-
-
+        let amount = formData.get("price_num");
+        for (let i = 0; i < selectedItems.length; i++) {
+            for (let j = 0; j < localInventory.length; j++) {
+                if (selectedItems[i] == localInventory[j].name) {
+                    localInventory[j].price = amount;
+                    break;
+                }
+            }
+        }
+        selectedItems = [];
+        updateItems();
     });
 
 }
@@ -130,7 +131,6 @@ function loadItems() {
     })
     .then(response => response.json())
     .then(data => {
-        console.log("loadItems() response: " + data);
         if (data != "") {
             localInventory = data;
         }
@@ -206,7 +206,7 @@ function removeItem() {
     for (let i = 0; i < selectedItems.length; i++) {
         for (let j = 0; j < localInventory.length; j++) {
             if (selectedItems[i] == localInventory[j].name) {
-                localInventory.splice(localInventory[j], 1);
+                localInventory.splice(j, 1);
                 break;
             }
         }
