@@ -134,3 +134,7 @@ nav ul li:hover .dropdown-menu {
   width: 60px;
   text-align: center;
 }
+
+#actions div {
+  margin-top: 10px;
+}
