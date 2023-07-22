@@ -27,7 +27,26 @@
         </ul> 
       </nav>
       <div class="maincontent">
-      </div>
+        <h2>Checkout System</h2>
+
+        <section class="checkout-section">
+          <h2>Checkout</h2>
+          <form id="checkoutForm">
+            <table id="checkoutTable">
+              <tr>
+                <th>Item</th>
+                <th>Stock</th>
+                <th>Unit Price</th>
+                <th>Quantity</th>
+              </tr>
+              <!-- Checkout items will be dynamically added here -->
+            </table>
+            <p>Total Price: $<span id="totalPrice">0.00</span></p>
+            <input type="submit" value="Place Order" onclick="placeOrder()">
+          </form>
+        </section>
+      
+        <script src="checkout.js"></script>
     </div>
   </body>
 </html>

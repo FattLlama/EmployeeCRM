@@ -61,26 +61,10 @@ body {
   margin: 0;
 }
 
-#pie_section {
-  display: flex;
-}
-
-th,td {
-  padding: 10px;
-}
-
-#pie_chart {
-  margin-top: 100px;
-  margin-left: 20px;
-  height: 200px;
-  width: 200px;
-  border-radius: 50%;
-  background: conic-gradient(orange 10%, #2ba4cd 25%, #df70e4 40%);
-}
-
-#pie_legend {
-  margin-left: 20px;
-  padding-top: 60px;
+.pie-chart-section {
+  display: flex
+  max-width: 200px; /* Set a specific width for the pie chart section */
+  margin: 0 auto; /* Center the chart section horizontally */
 }
 
 .sold_out {
