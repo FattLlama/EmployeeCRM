@@ -109,7 +109,7 @@ function populateDeleteItemDropdown() {
     };
   
     const options = {
-      responsive: false,
+      responsive: true,
     };
   
     new Chart(ctx, {
