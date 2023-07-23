@@ -1,0 +1,383 @@
+     /* CSS styling for the landing page */
+     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+     /* Global styles */
+     * {
+       box-sizing: border-box;
+       margin: 0;
+       padding: 0;
+       font-family: 'Montserrat', sans-serif;
+     }
+     
+     body {
+       background-color: #f4f4f4;
+     }
+     .review-box {
+             border: 1px solid #ccc;
+             padding: 20px;
+             margin-top: 30px;
+             background-color: #f8f8f8;
+           }
+           
+           .review-box h3 {
+             font-size: 1.2rem;
+             margin-bottom: 10px;
+           }
+           
+           .review-box p {
+             font-size: 1rem;
+             margin-bottom: 5px;
+           }
+           .review-box .review {
+             margin-bottom: 20px;
+           }
+           
+           .review-form label {
+             display: block;
+             margin-bottom: 5px;
+             font-size: 1rem;
+           }
+           
+           .review-form input,
+           .review-form textarea {
+             width: 100%;
+             padding: 10px;
+             margin-bottom: 10px;
+             border: 1px solid #ccc;
+             border-radius: 4px;
+             font-size: 1rem;
+           }
+           .review-form button {
+             background-color: #ffd700;
+             color: #222;
+             border: none;
+             padding: 10px 20px;
+             border-radius: 4px;
+             font-size: 1rem;
+             cursor: pointer;
+           }
+           
+           .review-form button:hover {
+             background-color: #ffd700;
+           }
+     /* Header styles */
+     header {
+       background-color: #0606b8;
+       color: #fff;
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+       padding: 1rem 2rem;
+       position: fixed;
+       top: 0;
+       left: 0;
+       right: 0;
+       z-index: 10;
+     }
+     
+     header a {
+       color: #fff;
+       text-decoration: none;
+     }
+     
+     header nav ul {
+       display: flex;
+     }
+     
+     header nav li {
+       list-style: none;
+       margin-right: 1.5rem;
+     }
+     
+     header nav li:last-of-type {
+       margin-right: 0;
+     }
+     
+     /* Hero section styles */
+     #hero {
+       background-image: url(https://lh3.googleusercontent.com/p8s_gCc8z3yXQ4DPZC4TyI8JHymBtT-7Acc3Y4UD_oyvCBAtqQ6xCHZgpR-tFYPuYg07rFYdgZ3oEspfdZF7vOkmOvnqVfsyqJ_99hly);
+       background-size: cover;
+       background-position: center;
+       height: calc(160vh - 80px);
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+       text-align: center;
+     }
+     
+     #hero h2 {
+       font-size: 4rem;
+       margin-bottom: 1rem;
+       color: #fff;
+       text-shadow: 2px 2px #000;
+     }
+     
+     #hero p {
+       font-size: 1.5rem;
+       margin-bottom: 2rem;
+       color: #fff;
+       text-shadow: 1px 1px #000;
+     }
+     
+     #hero button {
+       background-color: #ffd700;
+       color: #222;
+       border: none;
+       padding: 1rem 2rem;
+       font-size: 1.2rem;
+       border-radius: 3px;
+       cursor: pointer;
+       transition: all 0.3s ease;
+     }
+     
+     #hero button:hover {
+       background-color: #fff;
+       color: #222;
+       transform: scale(1.05);
+     }
+     
+     /* About section styles */
+     #about {
+       padding: 4rem 2rem;
+       text-align: center;
+     }
+     
+     #about h2 {
+       font-size: 2.5rem;
+       margin-bottom: 2rem;
+       color: #222;
+     }
+     
+     #about p {
+       font-size: 1.2rem;
+       line-height: 1.5;
+       color: #444;
+       margin-bottom: 2rem;
+     }
+
+     #create {
+       padding: 4rem 2rem;
+       text-align: center;
+     }
+     
+     #create h2 {
+       font-size: 2.5rem;
+       margin-bottom: 2rem;
+       color: #222;
+     }
+     
+     #create p {
+       font-size: 1.2rem;
+       line-height: 1.5;
+       color: #444;
+       margin-bottom: 2rem;
+     }
+     
+     #acc {
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    
+    #acc h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: #222;
+    }
+    
+    #acc p {
+      font-size: 1.2rem;
+      line-height: 1.5;
+      color: #444;
+      margin-bottom: 2rem;
+    }
+
+    #faq {
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    
+    #faq h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: #222;
+    }
+    
+    #faq p {
+      font-size: 1.2rem;
+      line-height: 1.5;
+      color: #444;
+      margin-bottom: 2rem;
+    }
+
+    #sign {
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    
+    #sign h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: #222;
+    }
+    
+    #sign p {
+      font-size: 1.2rem;
+      line-height: 1.5;
+      color: #444;
+      margin-bottom: 2rem;
+    }
+
+    #invest {
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    
+    #invest h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: #222;
+    }
+    
+    #invest p {
+      font-size: 1.2rem;
+      line-height: 1.5;
+      color: #444;
+      margin-bottom: 2rem;
+    }
+
+    #invest ul {
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    #invest li {
+      width: calc(100% / 3);
+      padding: 2rem;
+    }
+    
+    #invest li h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    #invest li p {
+      font-size: 1.2rem;
+      color: #ccc;
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+    }
+    
+    #invest li i {
+      font-size: 3rem;
+      color: #ffd700;
+      margin-bottom: 1rem;
+    }
+     /* Services section styles */
+     #services {
+       padding: 4rem 2rem;
+       text-align: center;
+       background-color: #0606b8;
+       color: #fff;
+     }
+     #services h2 {
+         font-size: 2.5rem;
+         margin-bottom: 2rem;
+       }
+       
+       #services ul {
+         list-style: none;
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+       }
+       
+       #services li {
+         width: calc(100% / 3);
+         padding: 2rem;
+       }
+       
+       #services li h3 {
+         font-size: 1.5rem;
+         margin-bottom: 1rem;
+       }
+       
+       #services li p {
+         font-size: 1.2rem;
+         color: #ccc;
+         line-height: 1.5;
+         margin-bottom: 1.5rem;
+       }
+       
+       #services li i {
+         font-size: 3rem;
+         color: #ffd700;
+         margin-bottom: 1rem;
+       }
+       
+       /* Contact section styles */
+       #contactus {
+        background-color: #fff !important;
+        padding: 4rem 2rem !important;
+        text-align: center !important;
+      }
+      
+      #contactus h2 {
+        font-size: 2.5rem !important;
+        margin-bottom: 2rem !important;
+        color: #222 !important;
+      }
+      
+      #contactus form {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+      }
+      
+      #contactus form label {
+        width: 100% !important;
+        max-width: 400px !important;
+        margin-bottom: 1rem !important;
+        font-size: 1.2rem !important;
+        color: #444 !important;
+      }
+      
+      #contactus form input,
+      #contactus form textarea {
+        width: 100% !important;
+        max-width: 400px !important;
+        padding: 1rem !important;
+        font-size: 1.2rem !important;
+        border-radius: 3px !important;
+        border: none !important;
+        margin-bottom: 2rem !important;
+        box-shadow: 2px 2px 6px rgba(0,0,0,0.1) !important;
+      }
+      
+      #contactus form button {
+        background-color: #ffd700 !important;
+        color: #222 !important;
+        border: none !important;
+        padding: 1rem 2rem !important;
+        font-size: 1.2rem !important;
+        border-radius: 3px !important;
+        cursor: pointer !important;
+        transition: all 0.3s ease !important;
+        box-shadow: 2px 2px 6px rgba(0,0,0,0.1) !important;
+      }
+      
+      #contactus form button:hover {
+        background-color: #fff !important;
+        color: #222 !important;
+        transform: scale(1.05) !important;
+      } 
+       .center {
+        float: left;
+        display: block;
+          margin-left: 50;
+          margin-right: 100;
+          height: 500px;
+          width: 600px;
+        }
