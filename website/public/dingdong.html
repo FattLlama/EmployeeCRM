@@ -28,33 +28,26 @@
       </nav>
       <div class="maincontent">
         <section class="location-info">
-            <h2>Dingdong, Texas - Business Statistics</h2>
-            <table>
-              <tr>
-                <th>Year</th>
-                <th>Revenue</th>
-                <th>Expenses</th>
-                <th>Profit</th>
-              </tr>
-              <tr>
-                <td>2021</td>
-                <td>$150,000</td>
-                <td>$100,000</td>
-                <td>$50,000</td>
-              </tr>
-              <tr>
-                <td>2022</td>
-                <td>$180,000</td>
-                <td>$120,000</td>
-                <td>$60,000</td>
-              </tr>
-              <tr>
-                <td>2023</td>
-                <td>$200,000</td>
-                <td>$140,000</td>
-                <td>$60,000</td>
-              </tr>
-            </table>
+          <h1>Dingdong Store Employee Management</h1>
+          <div id="chainOfCommand">
+            <!-- Display the chain of command here -->
+          </div>
+          <div id="employeeList">
+            <!-- Display the list of employees here -->
+          </div>
+          <div id="employeeActions">
+            <h2>Manage Employees</h2>
+            <input type="text" id="employeeName" placeholder="Employee Name">
+            <select id="employeeRole">
+              <option value="manager">Manager</option>
+              <option value="teamLead">Team Lead</option>
+              <option value="associate">Associate</option>
+            </select>
+            <button id="hireBtn">Hire</button>
+            <button id="fireBtn">Fire</button>
+          </div>
+        
+            <script src="dingdong.js"></script>
       </div>
     </div>
   </body>
