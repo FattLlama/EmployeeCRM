@@ -48,7 +48,7 @@ function updateCheckoutTable() {
         for (let i = 0; i < checkboxes.length; i++) {
           if (checkboxes[i].checked) {
             const itemName = checkboxes[i].value;
-            const quantity = parseInt(checkboxes[i].parentElement.nextElementSibling.children[0].value);
+            const quantity = parseInt(checkboxes[i].parentElement.nextElementSibling.nextElementSibling.nextElementSibling.children[0].value);
             const item = inventoryData.find(item => item.name === itemName);
             if (item) {
               totalPrice += quantity * item.price;
@@ -63,6 +63,8 @@ function updateCheckoutTable() {
     })
     .catch(error => console.error('Error fetching inventory data:', error));
 }
+
+// Rest of the code remains the same
 
 function placeOrder() {
   const selectedItems = [];
