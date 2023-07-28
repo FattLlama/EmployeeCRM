@@ -1,104 +1,107 @@
-// Function to load the JSON inventory data
-async function loadInventoryData() {
-  try {
-    const response = await fetch('inventory.json');
-    const inventoryData = await response.json();
-    return inventoryData;
-  } catch (error) {
-    console.error('Error loading inventory data:', error);
-    return [];
-  }
-}
+function updateCheckoutTable() {
+  fetch('/get_inventory')
+    .then(response => response.json())
+    .then(inventoryData => {
+      const checkoutForm = document.getElementById('checkoutForm');
+      const checkoutTable = document.getElementById('checkoutTable');
+      const totalPriceSpan = document.getElementById('totalPrice');
 
-// Function to update the checkout table with inventory data
-async function updateCheckoutTable() {
-  const inventoryData = await loadInventoryData();
-  const checkoutForm = document.getElementById('checkoutForm');
-  const checkoutTable = document.getElementById('checkoutTable');
-  const totalPriceSpan = document.getElementById('totalPrice');
+      checkoutTable.innerHTML = ''; // Clear the existing table
 
-  while (checkoutTable.rows.length > 1) {
-    checkoutTable.deleteRow(-1);
-  }
+      let totalPrice = 0;
 
-  let totalPrice = 0;
+      for (const item of inventoryData) {
+        const itemName = item.name;
+        const itemStock = item.quantity;
+        const itemPrice = item.price;
 
-  for (const item of inventoryData) {
-    const itemName = item.name;
-    const itemStock = item.quantity;
-    const itemPrice = parseFloat(item.price);
+        const row = checkoutTable.insertRow();
+        const checkboxCell = row.insertCell();
+        const itemNameCell = row.insertCell();
+        const itemStockCell = row.insertCell();
+        const itemPriceCell = row.insertCell();
+        const quantityCell = row.insertCell();
 
-    const quantityInput = document.createElement('input');
-    quantityInput.type = 'number';
-    quantityInput.min = '0';
-    quantityInput.max = itemStock.toString();
-    quantityInput.value = '0';
-    quantityInput.oninput = () => calculateTotal();
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.name = 'item';
+        checkbox.value = itemName;
+        checkboxCell.appendChild(checkbox);
 
-    const row = checkoutTable.insertRow();
-    row.insertCell().innerText = itemName;
-    row.insertCell().innerText = itemStock;
-    row.insertCell().innerText = `$${itemPrice.toFixed(2)}`;
-    row.insertCell().appendChild(quantityInput);
-  }
+        itemNameCell.innerText = itemName;
+        itemStockCell.innerText = itemStock;
+        itemPriceCell.innerText = `$${itemPrice.toFixed(2)}`;
 
-  function calculateTotal() {
-    totalPrice = 0;
-
-    for (let i = 1; i < checkoutTable.rows.length; i++) {
-      const quantity = parseInt(checkoutTable.rows[i].cells[3].getElementsByTagName('input')[0].value);
-      const unitPrice = parseFloat(checkoutTable.rows[i].cells[2].innerText.substring(1));
-      totalPrice += quantity * unitPrice;
-    }
-
-    totalPriceSpan.innerText = totalPrice.toFixed(2);
-  }
-
-  calculateTotal();
-}
-
-// Function to place the order and update the inventory data
-async function placeOrder() {
-  const inventoryData = await loadInventoryData();
-  const checkoutTable = document.getElementById('checkoutTable');
-
-  for (let i = 1; i < checkoutTable.rows.length; i++) {
-    const quantity = parseInt(checkoutTable.rows[i].cells[3].getElementsByTagName('input')[0].value);
-    const itemName = checkoutTable.rows[i].cells[0].innerText;
-
-    for (const item of inventoryData) {
-      if (item.name === itemName) {
-        if (item.quantity >= quantity) {
-          item.quantity -= quantity;
-          item.ordered += quantity;
-        } else {
-          alert('Insufficient stock for ' + itemName);
-          return;
-        }
-        break;
+        const quantityInput = document.createElement('input');
+        quantityInput.type = 'number';
+        quantityInput.min = '0';
+        quantityInput.max = itemStock.toString();
+        quantityInput.value = '0';
+        quantityInput.oninput = () => calculateTotal();
+        quantityCell.appendChild(quantityInput);
       }
-    }
-  }
 
-  // Save the updated inventory data back to the JSON file
-  try {
-    const response = await fetch('inventory.json', {
-      method: 'PUT', // You may need to adjust this depending on the server setup
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(inventoryData),
-    });
-    if (!response.ok) {
-      console.error('Failed to update inventory data:', response.status, response.statusText);
-      return;
-    }
-    updateCheckoutTable();
-    alert('Order placed successfully!');
-  } catch (error) {
-    console.error('Error updating inventory data:', error);
-  }
+      function calculateTotal() {
+        totalPrice = 0;
+
+        const checkboxes = document.getElementsByName('item');
+        for (let i = 0; i < checkboxes.length; i++) {
+          if (checkboxes[i].checked) {
+            const itemName = checkboxes[i].value;
+            const quantity = parseInt(checkboxes[i].parentElement.nextElementSibling.children[0].value);
+            const item = inventoryData.find(item => item.name === itemName);
+            if (item) {
+              totalPrice += quantity * item.price;
+            }
+          }
+        }
+
+        totalPriceSpan.innerText = totalPrice.toFixed(2);
+      }
+
+      checkoutForm.onchange = calculateTotal;
+    })
+    .catch(error => console.error('Error fetching inventory data:', error));
 }
 
-// Call the updateCheckoutTable function on page load to initialize the checkout table
+function placeOrder() {
+  const selectedItems = [];
+  const checkboxes = document.getElementsByName('item');
+  for (let i = 0; i < checkboxes.length; i++) {
+    if (checkboxes[i].checked) {
+      const itemName = checkboxes[i].value;
+      const quantity = parseInt(checkboxes[i].parentElement.nextElementSibling.children[0].value);
+      selectedItems.push({ itemName, quantity });
+    }
+  }
+
+  fetch('/get_inventory')
+    .then(response => response.json())
+    .then(inventoryData => {
+      for (const selectedItem of selectedItems) {
+        const item = inventoryData.find(item => item.name === selectedItem.itemName);
+        if (item) {
+          item.quantity -= selectedItem.quantity;
+        }
+      }
+
+      fetch('/update_inventory', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ inventory: JSON.stringify(inventoryData) })
+      })
+        .then(response => response.json())
+        .then(message => {
+          updateCheckoutTable();
+          alert(message);
+        })
+        .catch(error => console.error('Error placing order:', error));
+    })
+    .catch(error => console.error('Error fetching inventory data:', error));
+}
+
 updateCheckoutTable();
+
+
