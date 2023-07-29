@@ -84,6 +84,51 @@ async function placeOrder() {
   }
 }
 
+// Function to place the order
+async function placeOrder() {
+  const orderItems = [];
+  const quantityInputs = document.querySelectorAll(".quantity-input");
+
+  quantityInputs.forEach((input) => {
+    const name = input.dataset.name;
+    const quantity = parseInt(input.value);
+
+    if (quantity > 0) {
+      orderItems.push({ name, quantity });
+    }
+  });
+
+  const orderData = JSON.stringify({ orderItems });
+
+  try {
+    const response = await fetch("/place_order", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: orderData,
+    });
+
+    const updatedInventory = await response.json();
+
+    // Update the checkout table with the updated inventory data
+    updateCheckoutTable(updatedInventory);
+
+    // Clear the quantity inputs
+    quantityInputs.forEach((input) => {
+      input.value = 0;
+    });
+
+    // Update the total price
+    updateTotalPrice();
+
+    alert("Order placed successfully!");
+  } catch (error) {
+    console.error("Error placing order:", error);
+    alert("Error placing order. Please try again.");
+  }
+}
+
 // Load the inventory data and set up the checkout table when the page loads
 window.addEventListener("DOMContentLoaded", async () => {
   const inventoryData = await getInventoryData();
