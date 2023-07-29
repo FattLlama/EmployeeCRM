@@ -84,7 +84,6 @@ async function placeOrder() {
   }
 }
 
-// Function to place the order
 async function placeOrder() {
   const orderItems = [];
   const quantityInputs = document.querySelectorAll(".quantity-input");
