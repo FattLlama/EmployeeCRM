@@ -61,6 +61,7 @@ app.post("/place_order", function (req, res) {
 });
 
 app.get("/get_inventory", function (req, res) {
+  // check for authentication before revealing inventory
   let inventory;
   try { inventory = fs.readFileSync("inventory.json", "utf8"); }
   catch {}
