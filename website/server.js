@@ -36,6 +36,7 @@ app.post("/place_order", function (req, res) {
   }
 
   // Update the inventory based on the order
+  let hasEnoughStock = true;
   orderItems.forEach((item) => {
     const orderedItem = inventory.find((invItem) => invItem.name === item.name);
     if (orderedItem) {
@@ -44,15 +45,19 @@ app.post("/place_order", function (req, res) {
         orderedItem.quantity -= item.quantity;
         orderedItem.ordered += item.quantity;
       } else {
-        return res.status(400).send("Not enough stock for item: " + item.name);
+        hasEnoughStock = false;
       }
     }
   });
 
-  // Write the updated inventory back to the file
-  fs.writeFileSync("inventory.json", JSON.stringify(inventory), "utf8");
+  if (hasEnoughStock) {
+    // Write the updated inventory back to the file
+    fs.writeFileSync("inventory.json", JSON.stringify(inventory), "utf8");
 
-  res.send(JSON.stringify(inventory));
+    res.send(JSON.stringify(inventory));
+  } else {
+    res.status(400).send("Not enough stock for some items in the order.");
+  }
 });
 
 app.get("/get_inventory", function (req, res) {

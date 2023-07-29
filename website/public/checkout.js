@@ -51,39 +51,6 @@ function updateTotalPrice() {
   document.getElementById("totalPrice").innerText = totalPrice.toFixed(2);
 }
 
-// Function to place the order
-async function placeOrder() {
-  const orderItems = [];
-  const quantityInputs = document.querySelectorAll(".quantity-input");
-
-  quantityInputs.forEach((input) => {
-    const name = input.dataset.name;
-    const quantity = parseInt(input.value);
-
-    if (quantity > 0) {
-      orderItems.push({ name, quantity });
-    }
-  });
-
-  const orderData = JSON.stringify({ orderItems });
-
-  try {
-    const response = await fetch("/update_inventory", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: orderData,
-    });
-
-    const message = await response.json();
-    alert(message);
-  } catch (error) {
-    console.error("Error placing order:", error);
-    alert("Error placing order. Please try again.");
-  }
-}
-
 async function placeOrder() {
   const orderItems = [];
   const quantityInputs = document.querySelectorAll(".quantity-input");
@@ -131,6 +98,8 @@ async function placeOrder() {
     alert("Error placing order. Please try again.");
   }
 }
+
+
 
 // Load the inventory data and set up the checkout table when the page loads
 window.addEventListener("DOMContentLoaded", async () => {
