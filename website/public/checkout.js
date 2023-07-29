@@ -108,20 +108,24 @@ async function placeOrder() {
       body: orderData,
     });
 
-    const updatedInventory = await response.json();
+    if (response.ok) {
+      const updatedInventory = await response.json();
 
-    // Update the checkout table with the updated inventory data
-    updateCheckoutTable(updatedInventory);
+      // Update the checkout table with the updated inventory data
+      updateCheckoutTable(updatedInventory);
 
-    // Clear the quantity inputs
-    quantityInputs.forEach((input) => {
-      input.value = 0;
-    });
+      // Clear the quantity inputs
+      quantityInputs.forEach((input) => {
+        input.value = 0;
+      });
 
-    // Update the total price
-    updateTotalPrice();
+      // Update the total price
+      updateTotalPrice();
 
-    alert("Order placed successfully!");
+      alert("Order placed successfully!");
+    } else {
+      alert("Error placing order. Please try again.");
+    }
   } catch (error) {
     console.error("Error placing order:", error);
     alert("Error placing order. Please try again.");

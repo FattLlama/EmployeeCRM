@@ -39,8 +39,13 @@ app.post("/place_order", function (req, res) {
   orderItems.forEach((item) => {
     const orderedItem = inventory.find((invItem) => invItem.name === item.name);
     if (orderedItem) {
-      orderedItem.quantity -= item.quantity;
-      orderedItem.ordered += item.quantity;
+      // Check if there is enough stock for the order
+      if (orderedItem.quantity >= item.quantity) {
+        orderedItem.quantity -= item.quantity;
+        orderedItem.ordered += item.quantity;
+      } else {
+        return res.status(400).send("Not enough stock for item: " + item.name);
+      }
     }
   });
 
