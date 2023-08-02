@@ -3,18 +3,13 @@
 body {
   font-family: "Lato", sans-serif;
 }
-#logo {
-  width: 7%;
-  padding-right: 1rem;
+
+h1 {
+  padding-left: 20px;
 }
 
 #companyName {
   display: inline;
-}
-
-#headerContainer {
-  display: flex;
-  justify-content: center;
 }
 
 .nav_container {
@@ -24,12 +19,13 @@ body {
   justify-content: space-between;
   width: 200px;
   min-height: calc(100vh - 10em);
-  background-color: rgb(223, 223, 223);
+  background-image: url("/website/public/assets/particle-gray.jpg");
+  background-size: cover;
 }
 
 .nav_links {
   list-style-type: none;
-  margin: 0;
+  margin: 0px;
   padding: 0;
 }
 
@@ -38,10 +34,9 @@ body {
   color: black;
   padding: 8px 16px;
   text-decoration: none;
-  width: 200px; 
+  width: 200px;
 }
 
-/* Change the link color on hover */
 .nav_anchor:hover {
   background-color: gray;
   color: white;
@@ -52,9 +47,12 @@ body {
   flex: auto;
   padding: 2em;
   margin-left: 10px;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.7) 0 100%),
+    url("/website/public/assets/abstract-white-bg.jpg");
+  background-size: cover;
 }
 
-/* Fullbar is container that holds both nav and main conatiner */
+/* Fullbar holds both nav and main conatiner */
 #fullbar {
   display: flex;
   align-items: stretch;
@@ -65,12 +63,13 @@ body {
   display: flex;
 }
 
-th,td {
+th,
+td {
   padding: 10px;
 }
 
 #pie_chart {
-  margin-top: 100px;
+  margin-top: 50px;
   margin-left: 20px;
   height: 200px;
   width: 200px;
@@ -79,12 +78,89 @@ th,td {
 }
 
 #pie_legend {
-  margin-left: 20px;
-  padding-top: 60px;
+  flex: 1;
 }
 
 .sold_out {
   color: red;
+}
+
+#inventoryTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#inventoryTable th,
+#inventoryTable td {
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
+}
+
+#inventoryTable th {
+  text-align: left;
+  background-color: #f2f2f2;
+}
+
+#actions {
+  margin-top: 20px;
+}
+
+#search_section {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 20px;
+}
+
+#main_searchbox {
+  flex: auto;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#add_item_form {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+#add_item_form input[name="item_name"] {
+  flex: 3;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#add_item_form input[name="item_price"] {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#add-item-btn {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 70px;
+}
+
+#add-item-field {
+  width: 70px;
+}
+
+#clear_inventory_button {
+  margin-top: 30px;
+  padding: 8px 16px;
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#clear_inventory_button:hover {
+  background-color: #c82333;
 }
 
 .dropdown-menu {
@@ -100,14 +176,15 @@ nav ul li:hover .dropdown-menu {
 
 .location {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  align-items: flex-start;
+  align-items: flex-start, stretch;
   gap: 20px;
+  overflow-x: hidden;
 }
 
 .location-info {
-  width: 300px;
+  flex: 1 1 300px;
+  max-width: 300px;
   padding: 20px;
   background-color: #f4f4f4;
   text-align: center;
@@ -133,4 +210,57 @@ nav ul li:hover .dropdown-menu {
 #add_item input {
   width: 60px;
   text-align: center;
+}
+
+/* Chechout Section */
+.checkout-section {
+  margin: 20px auto;
+  max-width: 900px;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.checkout-section h2 {
+  margin-top: 0;
+}
+
+#checkoutTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#checkoutTable th,
+#checkoutTable td {
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
+}
+
+#checkoutTable th {
+  text-align: left;
+  background-color: #f2f2f2;
+}
+
+#totalPrice {
+  font-weight: bold;
+}
+
+input[type="submit"] {
+  display: block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #9b9ea1;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 20px;
+  padding-top: 5px;
 }

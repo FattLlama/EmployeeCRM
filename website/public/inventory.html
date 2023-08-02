@@ -9,28 +9,35 @@
   </head>
   <body>
     <script src="inv_script.js"></script>
-    <header id="headerContainer">
-      <img src="../assets/logo.png" alt="Company Logo" id="logo" />
-      <h1 id="companyName">Business Bros</h1>
-    </header>
+    <h1>Business Bros</h1>
 
     <div id="fullbar">
       <nav class="nav_container">
         <ul class="nav_links">
           <li><a class="nav_anchor" href="admin.html">Administration</a></li>
           <li>
-            <a class="nav_anchor" href="location.html">Branch / Campus / Location</a>
+            <a class="nav_anchor" href="location.html"
+              >Branch / Campus / Location</a
+            >
             <ul class="dropdown-menu">
               <li><a href="albuquerque.html">Albuquerque, New Mexico</a></li>
               <li><a href="dahlonega.html">Dahlonega, Georgia</a></li>
               <li><a href="dingdong.html">Dingdong, Texas</a></li>
             </ul>
-            </li>
-          <li><a class="nav_anchor" href="inventory.html">Inventory Management</a></li>
-          <li><a class="nav_anchor" href="salesstats.html">Sales Statistics</a></li>
-          <li><a class="nav_anchor" href="salesreports.html">Sales Reports</a></li>
-          <li><a class="nav_anchor" href="checkoutsystem.html">Checkout System</a></li>
-        </ul> 
+          </li>
+          <li>
+            <a class="nav_anchor" href="inventory.html">Inventory Management</a>
+          </li>
+          <li>
+            <a class="nav_anchor" href="salesstats.html">Sales Statistics</a>
+          </li>
+          <li>
+            <a class="nav_anchor" href="salesreports.html">Sales Reports</a>
+          </li>
+          <li>
+            <a class="nav_anchor" href="checkoutsystem.html">Checkout System</a>
+          </li>
+        </ul>
       </nav>
       <div class="maincontent">
         <div id="pie_section">
@@ -51,37 +58,54 @@
         </div>
         <div id="actions">
           <div hidden id="selected_item_row">
-            <button id="remove_item" onclick="removeItem() ">Remove item</button>
+            <button id="remove_item" onclick="removeItem() ">
+              Remove item
+            </button>
             <form id="order_more_form">
-              <input name="order_amt" type="number" required>
-              <input type="submit" value="Order more">
+              <input name="order_amt" type="number" required />
+              <input type="submit" value="Order more" />
             </form>
             <form id="quantity_adjustment_form">
-              <input name="quantity_num" type="number" min="0" required>
-              <input type="submit" value="Adjust quantity">
+              <input name="quantity_num" type="number" min="0" required />
+              <input type="submit" value="Adjust quantity" />
             </form>
             <form id="price_adjustment_form">
-              <input name="price_num" type="number" step="0.01" min="0" required>
-              <input type="submit" value="Adjust price">
+              <input
+                name="price_num"
+                type="number"
+                step="0.01"
+                min="0"
+                required
+              />
+              <input type="submit" value="Adjust price" />
             </form>
           </div>
           <div id="search_section">
-            <input type="Submit" value="Search" />
             <input
               type="text"
               placeholder="Item name, SKU, etc"
               id="main_searchbox"
-              />
+            />
+            <input type="Submit" value="Search" />
           </div>
           <div id="add_item">
             <form id="add_item_form">
-            <input type="text" name="item_name" placeholder="Name" required>
-            <input type="number" step="0.01" min="0" name="item_price" placeholder="Price" required>
-            <input type="submit" value="Add item">
+              <input type="text" name="item_name" placeholder="Name" required />
+              <input
+                type="number"
+                step="0.01"
+                min="0"
+                name="item_price"
+                placeholder="Price"
+                required
+              />
+              <input id="add-item-btn" type="submit" value="Add item" />
             </form>
           </div>
           <div id="always_on_options">
-            <button id="clear_inventory_button" onclick="clearInventory()">Clear inventory</button>
+            <button id="clear_inventory_button" onclick="clearInventory()">
+              Clear inventory
+            </button>
           </div>
           <div>
             <p id="actions_errors"></p>
@@ -89,5 +113,8 @@
         </div>
       </div>
     </div>
+    <footer class="footer">
+      <p>&copy; 2023 Business Bros. All rights reserved.</p>
+    </footer>
   </body>
 </html>
