@@ -1,4 +1,5 @@
-// public/test.js
+require("text-encoding-utf-8"); // Import the polyfill
+
 const { JSDOM } = require("jsdom");
 const { getInventoryData } = require("./checkout");
 
