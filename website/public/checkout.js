@@ -91,7 +91,6 @@ async function placeOrder() {
 
       alert("Order placed successfully!");
     } else {
-      // There was an error placing the order
       alert("Error placing order. Please try again.");
     }
   } catch (error) {
@@ -105,7 +104,6 @@ module.exports = {
   updateCheckoutTable,
   updateTotalPrice,
 };
-
 
 // Load the inventory data and set up the checkout table when the page loads
 window.addEventListener("DOMContentLoaded", async () => {
