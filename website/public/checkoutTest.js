@@ -2,7 +2,7 @@ const assert = require('assert');
 const { JSDOM } = require('jsdom');
 
 // Import the JavaScript files
-const checkoutJsCode = require('./checkout.js');
+const { getInventoryData, updateCheckoutTable, updateTotalPrice } = require('./checkout.js');
 const checkoutHtmlCode = `
 <!DOCTYPE html>
 <html>
@@ -28,9 +28,6 @@ describe("Checkout System Unit Tests", () => {
 
   // Test 1
   it("should fetch inventory data successfully", async () => {
-    // Assign the functions from the imported code
-    const { getInventoryData } = checkoutJsCode;
-
     const mockInventoryData = [
       { name: "Item 1", quantity: 10, price: 5.99 },
       { name: "Item 2", quantity: 5, price: 10.99 },
@@ -51,9 +48,6 @@ describe("Checkout System Unit Tests", () => {
 
   // Test 2
   it("should update the checkout table with inventory data", () => {
-    // Assign the functions from the imported code
-    const { updateCheckoutTable } = checkoutJsCode;
-
     const mockInventoryData = [
       { name: "Item 1", quantity: 10, price: 5.99 },
       { name: "Item 2", quantity: 5, price: 10.99 },
@@ -70,9 +64,6 @@ describe("Checkout System Unit Tests", () => {
 
   // Test 3
   it("should calculate the total price based on selected quantities", () => {
-    // Assign the functions from the imported code
-    const { updateTotalPrice } = checkoutJsCode;
-
     // Mock the quantity inputs
     dom.window.document.body.innerHTML = `
     <input type="number" min="0" max="10" value="2" data-price="5.99" data-name="Item 1" class="quantity-input" />

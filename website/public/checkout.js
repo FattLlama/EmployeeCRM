@@ -100,7 +100,13 @@ async function placeOrder() {
   }
 }
 
-
+if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
+  module.exports = {
+    getInventoryData,
+    updateCheckoutTable,
+    updateTotalPrice
+  };
+}
 
 
 // Load the inventory data and set up the checkout table when the page loads
