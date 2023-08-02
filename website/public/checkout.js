@@ -51,6 +51,9 @@ function updateTotalPrice() {
   document.getElementById("totalPrice").innerText = totalPrice.toFixed(2);
 }
 
+// ... (previous code)
+
+// Function to place the order
 async function placeOrder() {
   const orderItems = [];
   const quantityInputs = document.querySelectorAll(".quantity-input");
@@ -99,17 +102,11 @@ async function placeOrder() {
   }
 }
 
-module.exports = {
-  getInventoryData,
-  updateCheckoutTable,
-  updateTotalPrice,
-};
 
 // Load the inventory data and set up the checkout table when the page loads
 window.addEventListener("DOMContentLoaded", async () => {
   const inventoryData = await getInventoryData();
   updateCheckoutTable(inventoryData);
 });
-
 
 
