@@ -2,6 +2,10 @@
 async function getInventoryData() {
   try {
     const response = await fetch("/get_inventory");
+    if (!response.ok) {
+      console.error("Error fetching inventory data:", response.status);
+      return [];
+    }
     const inventoryData = await response.json();
     return inventoryData;
   } catch (error) {
