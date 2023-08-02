@@ -91,6 +91,7 @@ async function placeOrder() {
 
       alert("Order placed successfully!");
     } else {
+      // There was an error placing the order
       alert("Error placing order. Please try again.");
     }
   } catch (error) {
@@ -98,6 +99,7 @@ async function placeOrder() {
     alert("Error placing order. Please try again.");
   }
 }
+
 
 
 
