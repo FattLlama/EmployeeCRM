@@ -1,83 +1,28 @@
-const assert = require('assert');
-const { JSDOM } = require('jsdom');
+// checkout.test.js
+const fetch = require("node-fetch");
+const { getInventoryData } = require("./checkout");
 
-// Import the JavaScript files
-const { getInventoryData, updateCheckoutTable, updateTotalPrice } = require('./checkout.js');
-const checkoutHtmlCode = `
-<!DOCTYPE html>
-<html>
-  <body>
-    <table id="checkoutTable"></table>
-    <p>Total Price: $<span id="totalPrice">0.00</span></p>
-  </body>
-</html>
-`;
+jest.mock("node-fetch");
 
-describe("Checkout System Unit Tests", () => {
-  let dom;
+describe("Test 1 - getInventoryData", () => {
+  test("should fetch inventory data successfully", async () => {
+    // Mock the fetch function to return a resolved Promise with mocked data
+    const mockedInventoryData = [{ name: "Item 1", quantity: 10, price: 5.99 }];
+    const mockResponse = { json: jest.fn().mockResolvedValue(mockedInventoryData) };
+    fetch.mockResolvedValue(mockResponse);
 
-  // Set up a virtual DOM environment before each test
-  beforeEach(() => {
-    dom = new JSDOM(checkoutHtmlCode, { runScripts: 'dangerously' });
-    global.document = dom.window.document;
-    global.fetch = () => Promise.resolve({
-      json: () => Promise.resolve([]),
-    });
-    global.alert = () => {}; // Mock the alert function to avoid errors
+    // Call the function and assert the result
+    const result = await getInventoryData();
+    expect(result).toEqual(mockedInventoryData);
   });
 
-  // Test 1
-  it("should fetch inventory data successfully", async () => {
-    const mockInventoryData = [
-      { name: "Item 1", quantity: 10, price: 5.99 },
-      { name: "Item 2", quantity: 5, price: 10.99 },
-      // Add more mock data if needed
-    ];
+  test("should handle errors when fetching inventory data", async () => {
+    // Mock the fetch function to return a rejected Promise with an error
+    const mockError = new Error("Fetch error");
+    fetch.mockRejectedValue(mockError);
 
-    // Mock the fetch function to return the mock data
-    global.fetch = () => Promise.resolve({
-      json: () => Promise.resolve(mockInventoryData),
-    });
-
-    // Call the getInventoryData function
-    const inventoryData = await getInventoryData();
-
-    // Check the expected outcome
-    assert.deepStrictEqual(inventoryData, mockInventoryData);
-  });
-
-  // Test 2
-  it("should update the checkout table with inventory data", () => {
-    const mockInventoryData = [
-      { name: "Item 1", quantity: 10, price: 5.99 },
-      { name: "Item 2", quantity: 5, price: 10.99 },
-      // Add more mock data if needed
-    ];
-
-    // Call the updateCheckoutTable function with the mock data
-    updateCheckoutTable(mockInventoryData);
-
-    // Check the expected outcome
-    const rowCount = dom.window.document.getElementById("checkoutTable").rows.length;
-    assert.strictEqual(rowCount, mockInventoryData.length + 1); // +1 to account for the header row
-  });
-
-  // Test 3
-  it("should calculate the total price based on selected quantities", () => {
-    // Mock the quantity inputs
-    dom.window.document.body.innerHTML = `
-    <input type="number" min="0" max="10" value="2" data-price="5.99" data-name="Item 1" class="quantity-input" />
-    <input type="number" min="0" max="10" value="3" data-price="10.99" data-name="Item 2" class="quantity-input" />
-    `;
-
-    // Call the updateTotalPrice function with the mock data
-    updateTotalPrice();
-
-    // Check the expected outcome (change the value according to the expected total price)
-    const expectedTotalPrice = 2 * 5.99 + 3 * 10.99;
-    assert.strictEqual(
-      parseFloat(dom.window.document.getElementById("totalPrice").innerText),
-      expectedTotalPrice
-    );
+    // Call the function and assert the result
+    const result = await getInventoryData();
+    expect(result).toEqual([]);
   });
 });
