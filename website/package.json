@@ -17,5 +17,9 @@
   },
   "scripts": {
     "test": "jest"
+  },
+  "jest": {
+    "setupFiles": ["./jest.setup.js"]
   }
+  
 }
