@@ -1,4 +1,6 @@
 // Test 1: getInventoryData() function
+const fetchMock = require("jest-fetch-mock");
+const { getInventoryData, updateCheckoutTable, placeOrder } = require("checkout.js");
 describe("getInventoryData()", () => {
     it("should return inventory data from the server", async () => {
       // Assuming fetch is mocked to return a sample inventory data
