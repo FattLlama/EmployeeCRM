@@ -19,7 +19,8 @@
     "test": "jest"
   },
   "jest": {
-    "setupFiles": ["./jest.setup.js"]
+    "setupFiles": ["./jest.setup.js"],
+    "testEnvironment": "jsdom"
   }
   
 }

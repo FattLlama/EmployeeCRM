@@ -1,5 +1,11 @@
 // public/test.js
+const { JSDOM } = require("jsdom");
 const { getInventoryData } = require("./checkout");
+
+// Set up the JSDOM environment before running the tests
+const dom = new JSDOM("<!DOCTYPE html><html><body></body></html>");
+global.window = dom.window;
+global.document = dom.window.document;
 
 describe("Test 1 - getInventoryData", () => {
   beforeEach(() => {
