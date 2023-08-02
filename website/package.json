@@ -16,7 +16,7 @@
     "mocha": "^10.2.0"
     
   },
-  "script": {
+  "scripts": {
     "test": "jest"
   }
   
