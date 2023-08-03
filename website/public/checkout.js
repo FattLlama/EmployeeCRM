@@ -1,12 +1,7 @@
-const fetch = require("node-fetch");
 // Function to get inventory data from the server
 async function getInventoryData() {
   try {
     const response = await fetch("/get_inventory");
-    if (!response.ok) {
-      console.error("Error fetching inventory data:", response.status);
-      return [];
-    }
     const inventoryData = await response.json();
     return inventoryData;
   } catch (error) {
@@ -56,8 +51,6 @@ function updateTotalPrice() {
   document.getElementById("totalPrice").innerText = totalPrice.toFixed(2);
 }
 
-// ... (previous code)
-
 // Function to place the order
 async function placeOrder() {
   const orderItems = [];
@@ -75,7 +68,7 @@ async function placeOrder() {
   const orderData = JSON.stringify({ orderItems });
 
   try {
-    const response = await fetch("/place_order", {
+    const response = await fetch("/update_inventory", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -83,30 +76,13 @@ async function placeOrder() {
       body: orderData,
     });
 
-    if (response.ok) {
-      const updatedInventory = await response.json();
-
-      // Update the checkout table with the updated inventory data
-      updateCheckoutTable(updatedInventory);
-
-      // Clear the quantity inputs
-      quantityInputs.forEach((input) => {
-        input.value = 0;
-      });
-
-      // Update the total price
-      updateTotalPrice();
-
-      alert("Order placed successfully!");
-    } else {
-      alert("Error placing order. Please try again.");
-    }
+    const message = await response.json();
+    alert(message);
   } catch (error) {
     console.error("Error placing order:", error);
     alert("Error placing order. Please try again.");
   }
 }
-
 
 // Load the inventory data and set up the checkout table when the page loads
 window.addEventListener("DOMContentLoaded", async () => {
