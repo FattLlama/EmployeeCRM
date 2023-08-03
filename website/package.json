@@ -17,6 +17,7 @@
     "jest-fetch-mock": "^3.0.3",
     "mocha": "^10.2.0",
     "node-fetch": "^3.3.2",
+    "text-encoding": "^0.7.0",
     "text-encoding-utf-8": "^1.0.2"
   },
   "scripts": {
