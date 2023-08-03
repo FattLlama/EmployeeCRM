@@ -68,7 +68,7 @@ async function placeOrder() {
   const orderData = JSON.stringify({ orderItems });
 
   try {
-    const response = await fetch("/update_inventory", {
+    const response = await fetch("/place_order", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -76,13 +76,30 @@ async function placeOrder() {
       body: orderData,
     });
 
-    const message = await response.json();
-    alert(message);
+    if (response.ok) {
+      const updatedInventory = await response.json();
+
+      // Update the checkout table with the updated inventory data
+      updateCheckoutTable(updatedInventory);
+
+      // Clear the quantity inputs
+      quantityInputs.forEach((input) => {
+        input.value = 0;
+      });
+
+      // Update the total price
+      updateTotalPrice();
+
+      alert("Order placed successfully!");
+    } else {
+      alert("Error placing order. Please try again.");
+    }
   } catch (error) {
     console.error("Error placing order:", error);
     alert("Error placing order. Please try again.");
   }
 }
+
 
 // Load the inventory data and set up the checkout table when the page loads
 window.addEventListener("DOMContentLoaded", async () => {

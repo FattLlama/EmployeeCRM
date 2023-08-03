@@ -26,6 +26,7 @@ app.post("/update_inventory", function (req, res) {
 
 app.post("/place_order", function (req, res) {
   const orderItems = req.body.orderItems;
+  console.log("Received orderItems:", orderItems);
 
   // Read the current inventory data from the file
   let inventory;
@@ -53,6 +54,7 @@ app.post("/place_order", function (req, res) {
   if (hasEnoughStock) {
     // Write the updated inventory back to the file
     fs.writeFileSync("inventory.json", JSON.stringify(inventory), "utf8");
+    console.log("Updated inventory:", inventory);
 
     res.send(JSON.stringify(inventory));
   } else {
