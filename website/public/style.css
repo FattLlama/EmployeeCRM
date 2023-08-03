@@ -19,7 +19,7 @@ h1 {
   justify-content: space-between;
   width: 200px;
   min-height: calc(100vh - 10em);
-  background-image: url("/website/public/assets/particle-gray.jpg");
+  background-image: url("http://localhost:3000/assets/particle-gray.jpg");
   background-size: cover;
 }
 
@@ -48,7 +48,7 @@ h1 {
   padding: 2em;
   margin-left: 10px;
   background-image: linear-gradient(to right, rgba(255, 255, 255, 0.7) 0 100%),
-    url("/website/public/assets/abstract-white-bg.jpg");
+    url("http://localhost:3000/assets/abstract-white-bg.jpg");
   background-size: cover;
 }
 
